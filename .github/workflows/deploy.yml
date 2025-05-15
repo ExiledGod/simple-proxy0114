@@ -1,9 +1,9 @@
-name: Deploy to Cloudflare Workers
+name: Deploy with Wrangler v4
 
 on:
   push:
     branches:
-      - main
+      - main  # adjust if your default branch is different
 
 jobs:
   deploy:
@@ -16,20 +16,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 8  # or whatever version you're using
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install wrangler v4
+      - name: Install Wrangler
         run: pnpm add -g wrangler@latest
 
-      - name: Publish to Cloudflare Workers
+      - name: Deploy to Cloudflare Workers
         run: wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
