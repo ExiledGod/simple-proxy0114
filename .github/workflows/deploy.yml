@@ -4,25 +4,18 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
-      - name: Build project
-        run: pnpm run build
-
-      - name: Publish to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
+      - name: Publish with Wrangler v4
+        uses: cloudflare/wrangler-action@v4
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
