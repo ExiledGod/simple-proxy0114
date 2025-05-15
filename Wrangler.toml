@@ -1,6 +1,6 @@
-name = "my-worker"
+name = "simple-proxy0114"
 type = "javascript"
-main = "index.js"
+main = "src/index.ts"
 account_id = "c8e1887b7c90b160ae9451cf522933d3"
 workers_dev = true
 compatibility_date = "2024-01-01"
